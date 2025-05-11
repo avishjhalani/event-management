@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sessions</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #d4edda; /* Soft green background */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.overlay {
+    background-color: rgba(255, 255, 255, 0.92);
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 1200px;
+    margin: 80px auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.left-col, .right-col {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.left-col {
+    max-width: 600px;
+}
+
+.right-col {
+    background: #ecf0f1;
+    max-width: 350px;
+}
+
+h2, h3 {
+    color: #264653;
+    margin-bottom: 10px;
+}
+
+ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 12px;
+    list-style: none;
+}
+
+button {
+    background-color: #2a9d8f;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #21867a;
+}
+
+select, input {
+    padding: 12px;
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #2a9d8f;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Added for responsive design */
+@media (max-width: 768px) {
+    .overlay {
+        padding: 20px;
+    }
+
+    .row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .left-col, .right-col {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .left-col {
+        margin-bottom: 20px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="left-col">
+                <h2>Upcoming Sessions</h2>
+                <ul>
+                    <% events.forEach(event => { %>
+                        <li><%= event.title %> on <%= event.date %></li>
+                    <% }) %>
+                </ul>
+
+                <h3>Register</h3>
+                <form action="/register" method="POST">
+                    Name: <input type="text" name="name" required><br>
+                    Select Session:
+                    <select name="eventName" required>
+                        <% events.forEach(event => { %>
+                            <option value="<%= event.title %>"><%= event.title %> - <%= event.date %></option>
+                        <% }) %>
+                    </select><br>
+                    <button type="submit">Register</button>
+                </form>
+
+                <a href="/">Back to Home</a>
+            </div>
+
+            <!-- Most Registered Events -->
+            <div class="right-col">
+                <h3>🔥 Most Registered Sessions</h3>
+                <ul>
+                    <% topEvents.forEach(event => { %>
+                        <li><%= event.title %> (<%= event.registrationCount %> regs)</li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

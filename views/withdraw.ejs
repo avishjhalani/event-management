@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Withdraw Registration</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+      body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #d8f6e7; /* Soft green background */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.overlay {
+    background-color: rgba(255, 255, 255, 0.92);
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 700px;
+    width: 100%;
+    margin: 60px auto;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+h2 {
+    color: #2a9d8f; /* Soft green for headings */
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #2a9d8f; /* Soft green border on focus */
+}
+
+button {
+    background-color: #2a9d8f; /* Soft green button */
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #21867a; /* Darker soft green on hover */
+}
+
+p {
+    color: #e74c3c; /* Red color for errors */
+    font-size: 14px;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #2a9d8f; /* Soft green for links */
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #21867a; /* Darker soft green on hover */
+    text-decoration: underline;
+}
+
+/* Added responsiveness */
+@media (max-width: 768px) {
+    .overlay {
+        padding: 25px;
+        max-width: 90%;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    input {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="container">
+            <h2>Withdraw Your Event Registration</h2>
+
+            <% if (message) { %>
+                <p style="color: <%= message.includes('successfully') ? 'green' : 'red' %>;"><%= message %></p>
+            <% } %>
+
+            <form action="/withdraw" method="POST">
+                Enter Your Entry Code:
+                <input name="entryCode" required>
+                <button type="submit">Withdraw</button>
+            </form>
+
+            <a href="/">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

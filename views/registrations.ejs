@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Registrations</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <h2>All Registrations</h2>
+    <ul>
+        <% registrations.forEach(r => { %>
+            <li><strong><%= r.name %></strong> registered for <%= r.eventName %> | Entry Code: <%= r.entryCode %></li>
+        <% }) %>
+    </ul>
+    <a href="/">Back to Home</a>
+</div>
+</body>
+</html>

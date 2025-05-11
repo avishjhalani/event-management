@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= isSetup ? 'Wellness Admin Login' : 'Set Admin Credentials' %></title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #d4edda; /* Soft green background */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.overlay {
+    background-color: rgba(255, 255, 255, 0.92);
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 800px;
+    margin: 100px auto;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #3498db;
+}
+
+button {
+    background-color: #2a9d8f;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #21867a;
+}
+
+p {
+    color: #e74c3c;
+    font-size: 14px;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #2a9d8f;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #21867a;
+    text-decoration: underline;
+}
+
+/* Added responsiveness */
+@media (max-width: 800px) {
+    .overlay {
+        padding: 30px;
+        max-width: 100%;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    input {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="container">
+            <h2><%= isSetup ? 'Wellness Admin Login' : 'Set Admin Username and Password' %></h2>
+
+            <% if (error) { %>
+                <p><%= error %></p>
+            <% } %>
+
+            <form action="/login" method="POST">
+                Username: <input type="text" name="username" required><br>
+                Password: <input type="password" name="password" required><br>
+                <button type="submit"><%= isSetup ? 'Login' : 'Create Admin' %></button>
+            </form>
+
+            <a href="/">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
+

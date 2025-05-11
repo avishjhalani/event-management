@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Session Pass</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+      body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #d5f8e3; /* Soft light green background */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.ticket {
+    width: 380px;
+    margin: 60px auto;
+    padding: 30px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-left: 8px solid #2ecc71; /* Soft green color for the left border */
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.ticket h2 {
+    margin-top: 0;
+    color: #2c3e50; /* Darker shade for the heading */
+    font-size: 1.8em;
+    text-align: center;
+}
+
+.ticket p {
+    margin: 12px 0;
+    font-size: 1.1em;
+}
+
+.entry-code {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #27ae60; /* Soft green for the entry code */
+    text-align: center;
+    margin-top: 20px;
+}
+
+.qr-code {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.qr-code img {
+    width: 140px;
+    height: 140px;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effects */
+.ticket:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.ticket p, .entry-code {
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .ticket {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .ticket h2 {
+        font-size: 1.5em;
+    }
+
+    .entry-code {
+        font-size: 1.3em;
+    }
+
+    .qr-code img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="ticket">
+        <h2>🎟️ Wellness Session Pass</h2>
+        <p><strong>Name:</strong> <%= registration.name %></p>
+        <p><strong>Session:</strong> <%= registration.eventName %></p>
+        <p><strong>Session Entry Code:</strong> <span class="entry-code"><%= registration.entryCode %></span></p>
+        <p><strong>Status:</strong> <%= registration.status %></p>
+
+        <div class="qr-code">
+            <img src="<%= qrImage %>" alt="QR Code">
+        </div>
+
+        <p style="text-align: center;"><a href="/">Back to Home</a></p>
+    </div>
+</body>
+</html>

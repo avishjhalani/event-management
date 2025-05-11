@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WellNest Admin Console</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+    --primary: #c8e6c9;       /* soft green */
+    --secondary: #f3d1f4;     /* pastel lavender */
+    --accent: #ffdede;        /* soft pink */
+    --text-dark: #333;
+    --text-light: #fff;
+    --background: #f7fdfc;
+    --btn-color: #a5d6a7;
+    --btn-hover: #81c784;
+    --nav-color: #a8dadc;     /* pastel turquoise */
+    --link-color: #2a9d8f;    /* teal */
+    --link-hover-color: #21867a; /* darker teal */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #d0e8f2, #e6eafc);
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    text-align: center;
+}
+
+nav {
+    background-color: var(--nav-color);
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    color: #1d3557;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+nav a {
+    color: #1d3557;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: var(--link-hover-color);
+}
+
+.overlay {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    max-width: 900px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    padding: 25px;
+    background-color: var(--text-light);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+h2, h3, h4 {
+    color: #264653;
+}
+
+input, button {
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 100%;
+    max-width: 350px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: var(--btn-color);
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+button:hover {
+    background-color: var(--btn-hover);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: center;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color: var(--nav-color);
+    color: #1d3557;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}
+
+.waiting {
+    color: #e76f51;
+}
+
+form {
+    margin-top: 10px;
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+.form-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-section input {
+    margin-bottom: 12px;
+}
+
+.admin-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.admin-buttons a {
+    margin: 0 15px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+.admin-buttons a:hover {
+    color: var(--link-hover-color);
+}
+
+.card-header {
+    margin-bottom: 20px;
+}
+
+.back-button {
+    display: block;
+    margin-top: 20px;
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-button:hover {
+    color: var(--link-hover-color);
+}
+
+.container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+/* Added for responsive design */
+@media (max-width: 768px) {
+    .overlay {
+        padding: 20px;
+    }
+    .card {
+        padding: 15px;
+    }
+    .admin-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div><strong>🛠️ Admin Panel</strong></div>
+    </nav>
+
+    <div class="overlay">
+        <div class="card">
+            <h2>WellNest Admin Console</h2>
+            <div class="card-header">
+                <h3>Add New Session</h3>
+                <form action="/admin" method="POST">
+                    <div class="form-section">
+                        <label for="title">Title:</label>
+                        <input id="title" name="title" required><br>
+                    </div>
+                    <div class="form-section">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" name="date" required><br>
+                    </div>
+                    <div class="form-section">
+                        <label for="seats">Slots:</label>
+                        <input type="number" id="seats" name="seats" min="1" required><br>
+                    </div>
+                    <button type="submit">Add Slots</button>
+                </form>
+            </div>
+
+            <div class="card-header">
+                <h3>Existing Slots:</h3>
+                <% events.forEach(event => { %>
+                    <div class="container">
+                        <h3><%= event.title %> — <%= event.date %></h3>
+                        <p>Total Slots: <%= event.seats %></p>
+                        <p>Slots Filled: <%= eventMap[event.title].confirmed.length %> / <%= event.seats %></p>
+
+                        <h4>Confirmed Participants:</h4>
+                        <% if (eventMap[event.title].confirmed.length === 0) { %>
+                            <p>No confirmed registrations.</p>
+                        <% } else { %>
+                            <ul>
+                                <% eventMap[event.title].confirmed.forEach(r => { %>
+                                    <li>
+                                        <%= r.name %> — Code: <%= r.entryCode %>
+                                        <form action="/admin/remove" method="POST" style="display:inline;">
+                                            <input type="hidden" name="entryCode" value="<%= r.entryCode %>">
+                                            <button type="submit">Remove</button>
+                                        </form>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        <% } %>
+
+                        <h4 class="waiting">Waiting Participants:</h4>
+                        <% if (eventMap[event.title].waiting.length === 0) { %>
+                            <p>No one on the waiting list.</p>
+                        <% } else { %>
+                            <ul>
+                                <% eventMap[event.title].waiting.forEach(r => { %>
+                                    <li class="waiting">
+                                        <%= r.name %> — Code: <%= r.entryCode %>
+                                        <form action="/admin/remove" method="POST" style="display:inline;">
+                                            <input type="hidden" name="entryCode" value="<%= r.entryCode %>">
+                                            <button type="submit">Remove</button>
+                                        </form>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                            <form action="/admin/clear-waiting" method="POST">
+                                <input type="hidden" name="eventTitle" value="<%= event.title %>">
+                                <button type="submit">Clear Waiting List</button>
+                            </form>
+                        <% } %>
+                    </div>
+                <% }) %>
+            </div>
+
+            <div class="card-header">
+                <h3>Registrations:</h3>
+                <% if (registrations.length === 0) { %>
+                    <p>No registrations yet.</p>
+                <% } else { %>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Session</th>
+                                <th>Session Code</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% registrations.forEach(r => { %>
+                                <tr>
+                                    <td><%= r.name %></td>
+                                    <td><%= r.eventName %></td>
+                                    <td><%= r.entryCode %></td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                <% } %>
+            </div>
+
+            <a href="/" class="back-button">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

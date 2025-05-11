@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WellNest - A Cozy Place for Wellness Planning </title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c8e6c9;       /* soft green */
+            --secondary: #f3d1f4;     /* pastel lavender */
+            --accent: #ffdede;        /* soft pink */
+            --text-dark: #333;
+            --text-light: #fff;
+            --background: #f7fdfc;
+            --btn-color: #a5d6a7;
+            --btn-hover: #81c784;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #f1f8e9); /* pastel blend */
+            color: var(--text-dark);
+        }
+
+        nav {
+            background-color: #b2dfdb;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Lora', serif;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #6a1b9a;
+        }
+
+        h1 {
+            color: #4e4e4e;
+            text-align: center;
+            font-family: 'Lora', serif;
+            font-size: 2.5rem;
+        }
+
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 50px 20px;
+            border-radius: 20px;
+            max-width: 1000px;
+            margin: 60px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .row {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 280px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .col:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.6rem;
+            color: #2e7d32;
+        }
+
+        h3 {
+            color: #616161;
+        }
+
+        .btn-link {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 20px;
+            background: var(--btn-color);
+            color: var(--text-dark);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .btn-link:hover {
+            background: var(--btn-hover);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        select.form-input {
+            background-color: #fefefe;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: var(--btn-color);
+            color: var(--text-dark);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--btn-hover);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div><strong>🎓 WellNest Sessions</strong></div>
+        <div>
+            <a href="/">Home</a>
+            <a href="/events">Sessions</a>
+            <a href="/admin">Admin</a>
+            <a href="/login">Login</a>
+            <a href="/withdraw">Withdraw</a>
+            <a href="/about">About Us</a>
+        </div>
+    </nav>
+
+    <div class="overlay">
+        <div class="container">
+            <h1>WellNest - A Cozy Place for Wellness Planning</h1>
+            <div class="row">
+                <!-- Registration Column -->
+                <div class="col">
+                    <h2>Wellness Signups</h2>
+                    <form action="/register" method="POST">
+                        <label for="name">Name:</label>
+                        <input class="form-input" id="name" name="name" required><br>
+
+                        <label for="email">Email:</label>
+                        <input class="form-input" id="email" name="email" type="email" required><br>
+
+                        <label for="eventName">Event:</label>
+                        <select class="form-input" name="eventName" id="eventName" required>
+                            <% events.forEach(event => { %>
+                                <option value="<%= event.title %>"><%= event.title %></option>
+                            <% }) %>
+                        </select><br>
+
+                        <button type="submit">Register</button>
+                    </form>
+                </div>
+
+                <!-- Admin & Utility Column -->
+                <div class="col">
+                    <h2>Quick Access</h2>
+                    <p>Wellness Admin users can manage Sessions and Bookings.</p>
+                    <a class="btn-link" href="/admin">Go to Wellness Admin Console</a>
+                    <a class="btn-link" href="/login">Admin Login</a>
+                    <hr>
+                    <h3>Need to cancel?</h3>
+                    <p>You can withdraw your registration using your entry code.</p>
+                    <a class="btn-link" href="/withdraw">Withdraw Registration</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
